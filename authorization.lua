@@ -110,7 +110,7 @@ function discSession()
             outputDebugString(tostring(sesData['remembered']))
             local sesRemove = mysql_query(mysqlH,"DELETE FROM mta_sessions WHERE cd = '"..getPlayerSerial(source).."'")
             if not sesRemove then
-                outputConsole("ERROR! Code 5.",source)
+                outputConsole("ERROR! Code 6.",source)
             end
         end
         mysql_free_result(sesQuery)

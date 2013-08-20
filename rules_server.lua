@@ -7,3 +7,14 @@ function introduce(player,gid)
         end
     end
 end
+
+addEvent('introduced',true)
+addEventHandler('introduced',root,function()
+    local gid = getElementData(source,'gid')
+    local intro_change = changeAccountData(gid,'introduced','1')
+    if intro_change then
+    
+    else
+        outputChatBox('#ff0000ERROR: Code 7.',source,255,255,255,true)
+    end
+end)
