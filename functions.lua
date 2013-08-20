@@ -41,19 +41,31 @@ function ifPlayerHaveFlag(gid,flag)
         local data = mysql_fetch_assoc(playerData)
         local getgroup = mysql_query(mysqlH,"SELECT * FROM flags WHERE group_id = '"..data['group'].."' and type='group'")
         local getuser = mysql_query(mysqlH,"SELECT * FROM flags WHERE gid = '"..gid.."' and type='user'")
-        if mysql_num_rows(getgroup)==1 then
-            local groupdata = mysql_fetch_assoc(getgroup)
-            if type(groupdata['flags'])=="string" then
-                retur = string.find(groupdata['flags'].." ",flag)
+        if mysql_num_rows(getuser)==1 then
+            local userdata = mysql_fetch_assoc(getuser)
+            if type(userdata['flags'])=="string" then
+                local flags = split(userdata['flags'],' ')
+                for _,f in pairs(flags) do
+                    if f==flag then
+                        retur = true
+                        break
+                    end
+                end
             else
                 retur = false
             end
         end
         if not retur then
             if mysql_num_rows(getuser)==1 then
-                local userData = mysql_fetch_assoc(getuser)
-                if type(userData['flags'])=="string" then
-                    retur = string.find(userData['flags'].." ",flag)
+            local groupdata = mysql_fetch_assoc(getgroup)
+                if type(groupdata['flags'])=="string" then
+                    local flags = split(groupdata['flags'],' ')
+                    for _,f in pairs(flags) do
+                        if f==flag then
+                            retur = true
+                            break
+                        end
+                    end
                 else
                     retur = false
                 end
@@ -73,22 +85,32 @@ function ifPlayerHaveImmunity(gid,immunity)
         local data = mysql_fetch_assoc(playerData)
         local getgroup = mysql_query(mysqlH,"SELECT * FROM flags WHERE group_id = '"..data['group'].."' and type='group'")
         local getuser = mysql_query(mysqlH,"SELECT * FROM flags WHERE gid = '"..gid.."' and type='user'")
-        if mysql_num_rows(getgroup)==1 then
-            local groupdata = mysql_fetch_assoc(getgroup)
-            if type(groupdata['immunity'])=="string" then
-                retur = string.find(groupdata['immunity'],immunity)
+        if mysql_num_rows(getuser)==1 then
+            local userdata = mysql_fetch_assoc(getuser)
+            if type(userdata['immunity'])=="string" then
+                local immunity = split(userdata['immunity'],' ')
+                for _,i in pairs(immunity) do
+                    if i==immunity then
+                        retur = true
+                        break
+                    end
+                end
             else
                 retur = false
             end
         end
         if not retur then
-            if mysql_num_rows(getuser)==1 then
-                local userData = mysql_fetch_assoc(getuser)
-                if type(userData['immunity'])=="string" then
-                    retur = string.find(userData['immunity'],immunity)
-                else
-                    retur = false
+        if mysql_num_rows(getgroup)==1 then
+        local groupdata = mysql_fetch_assoc(getgroup)
+            if type(groupdata['immunity'])=='string' then
+            local immunity = split(groupdata['immunity'],' ')
+                for _,i in pairs(immunity) do
+                    if i==immunity then
+                        retur = true
+                        break
+                    end
                 end
+            end
             end
         end
         mysql_free_result(getgroup)
@@ -99,11 +121,12 @@ function ifPlayerHaveImmunity(gid,immunity)
 end
 
 function getPlayerCharacterData(cid)
+    local retur = nil
     local getCharacter = mysql_query(mysqlH,"SELECT * FROM characters WHERE cid = '"..cid.."'")
     if mysql_num_rows(getCharacter)~=0 then
-        local retur = mysql_fetch_assoc(getCharacter)
+        retur = mysql_fetch_assoc(getCharacter)
     else
-        local retur = false
+        retur = false
     end
     mysql_free_result(getCharacter)
     return retur
@@ -118,6 +141,40 @@ function getPlayerAccountData(gid)
         retur = false
     end
     mysql_free_result(getAcc)
+    return retur
+end
+
+function getAccountGroupData(gid)
+    local retur = nil
+    local data = getPlayerAccountData(gid)
+    if data then
+        local getgroup = mysql_query(mysqlH,"SELECT * FROM flags WHERE group_id = '"..data['group'].."' and type='group'")
+        local getuser = mysql_query(mysqlH,"SELECT * FROM flags WHERE gid = '"..gid.."' and type='user'")
+        if mysql_num_rows(getuser)==1 then
+            retur=mysql_fetch_assoc(getuser)
+        end
+        if not retur then
+            if mysql_num_rows(getgroup)==1 then
+                retur=mysql_ferch_assoc(getgroup)
+            end
+        end
+        mysql_free_result(getgroup)
+        mysql_free_result(getuser)
+    end
+    return retur
+end
+
+function compareAccLevels(gid1,gid2)
+    local retur = nil
+    local acc1 = getAccountGroupData(gid1)
+    local acc2 = getAccountGroupData(gid2)
+    if acc1 and acc2 then
+        if acc1['level']<=acc2['level'] then
+            retur = true
+        else
+            retur = false
+        end
+    end
     return retur
 end
 

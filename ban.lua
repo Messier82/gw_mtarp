@@ -1,7 +1,7 @@
 function checkBan(msg)
     if chatFuncCheck("!ban",msg) then
         local gid = getElementData(source,"gid")
-        if ifPlayerHaveFlag(gid,"b") then
+        if ifPlayerHaveFlag(gid,"ban") then
             local chat2 = string.gsub(msg,"!ban ","")
             local param = strw_to_table(chat2)
             local id = param[1]
@@ -15,7 +15,7 @@ function checkBan(msg)
                 if time=="perm" or time2=="minutes" or time2=="hours" or time2=="days" or time2=="weeks" or time2=="months" or time2=="years" then
                     local player = getPlayerAccountData(id)
                     if player then
-                        if not ifPlayerHaveImmunity(id,"b") then
+                        if not ifPlayerHaveImmunity(id,"ban") and compareAccLevels(getElementData(source,'character'),getElementData(player,'character')) then
                             local exsistban = mysql_query(mysqlH,"SELECT * FROM mta_bans WHERE gid = '"..id.."' and unbanned = '0'")
                             if mysql_num_rows(exsistban)==0 then
                                 if reason==id.." "..time then reason="" end
