@@ -5,6 +5,8 @@ function introduce(player,gid)
         if changeIntroduced0 then
             triggerClientEvent(player,'showIntroducing',root)
         end
+    else
+        triggerEvent('spawnPlayer',source)
     end
 end
 
@@ -12,9 +14,7 @@ addEvent('introduced',true)
 addEventHandler('introduced',root,function()
     local gid = getElementData(source,'gid')
     local intro_change = changeAccountData(gid,'introduced','1')
-    if intro_change then
-    
-    else
+    if not intro_change then
         outputChatBox('#ff0000ERROR: Code 7.',source,255,255,255,true)
     end
 end)

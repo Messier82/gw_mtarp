@@ -10,6 +10,7 @@ function startRes()
                         outputDebugString("Successfully connected to MySQL!")
                     else
                         outputDebugString("ERROR! Code 3: Cannot connect to MySQL!")
+                        cancelEvent()
                     end
                 else
                     outputDebugString("ERROR! Code 2: Cannot recieve MySQL config data!")

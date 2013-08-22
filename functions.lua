@@ -282,3 +282,8 @@ function changeAccountData(gid,row,value)
     local change = mysql_query(mysqlH,'UPDATE users SET '..row..'="'..value..'" WHERE gid="'..gid..'"')
     if change then return true else return false end
 end
+
+function changeCharacterData(cid,row,value)
+    local change = mysql_query(mysqlH,'UPDATE characters SET '..row..'="'..value..'" WHERE cid="'..cid..'"')
+    if change then return true else return false end
+end
