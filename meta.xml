@@ -1,9 +1,9 @@
 ﻿<meta>
 	<info author="Messier82" version="v0.1a" name="Admin System" description="Admin system for MTA RP server" type="script" />
-	<map src='pprp.map' />
+	<map src="pprp.map" />
 	<min_mta_version client="1.3.1-9.04690" />
-	<script src="functions.lua" type="server" />
 	<script src="init.lua" type="server" />
+	<script src="functions.lua" type="server" />
 	<script src="authorization.lua" type="server" />
 	<script src="authorization_client.lua" type="client" />
 	<config src="config.xml" type="server" />
@@ -14,4 +14,7 @@
 	<script src="rules_server.lua" type="server" />
 	<script src="rules_client.lua" type="client" />
 	<script src="spawn.lua" type="server" />
+	<script src="licensers.lua" type="server" />
+	<script src="licensers_client.lua" type="client" />
+	<script src="marker_trigger.lua" type="server" />
 </meta>

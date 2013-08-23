@@ -34,11 +34,24 @@ Errs:
 
 12:spawnPlayer function returns false
 
+13:Can't open server local db
+
 Spawns: 
 -----------
 LS: ls_spawn1-4
 
 SF: sf_spawn1-4
+
+Markers:
+--------------
+
+Autoschool:
+as_in_entry1,2;
+as_out_entry1,2;
+as_theory_exam;
+as_practice_exam;
+licensers_duty;
+
 
 Licenses
 -----------
@@ -65,3 +78,8 @@ WSH - Дробовики;
 WSMG - Пистолеты-пулеметы;
 WA - Автоматические винтовки;
 WS - Снайперские винтовки;
+
+DX Information markers:
+----------
+
+as_msg_table

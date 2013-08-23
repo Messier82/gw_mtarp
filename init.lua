@@ -21,6 +21,11 @@ function startRes()
             outputDebugString("ERROR! Code 1: Cannot open config(config.xml) file!")
             cancelEvent()
         end
+     sqliteH = dbConnect('sqlite','server_db.db')
+     if not sqliteH then
+        outputDebugString('ERROR! Code 13.')
+        cancelEvent()
+     end
 end
 
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),startRes)
