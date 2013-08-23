@@ -26,6 +26,20 @@ function startRes()
         outputDebugString('ERROR! Code 13.')
         cancelEvent()
      end
+     setMarkerColor(getElementByID('ls_spawn1'),0,0,0,0)
+     setMarkerColor(getElementByID('ls_spawn2'),0,0,0,0)
+     setMarkerColor(getElementByID('ls_spawn3'),0,0,0,0)
+     setMarkerColor(getElementByID('ls_spawn4'),0,0,0,0)
+     
+     setMarkerColor(getElementByID('sf_spawn1'),0,0,0,0)
+     setMarkerColor(getElementByID('sf_spawn2'),0,0,0,0)
+     setMarkerColor(getElementByID('sf_spawn3'),0,0,0,0)
+     setMarkerColor(getElementByID('sf_spawn4'),0,0,0,0)
+     
+     setMarkerColor(getElementByID('as_msg_table'),0,0,0,0)
+     
+     local ldr,ldg,ldb = getMarkerColor(getElementByID('licensers_duty'))
+     setMarkerColor(getElementByID('licensers_duty'),ldr,ldg,ldb,0)
 end
 
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),startRes)
