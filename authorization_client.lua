@@ -8,6 +8,8 @@
     local submit = guiCreateButton(171,109,70,30,"Вход!",false,authWindow)
     local remember = guiCreateCheckBox(8,109,100,30,"Запомнить?",false,false,authWindow)
     guiSetVisible(authWindow,false)
+    guiWindowSetMovable(authWindow,false)
+    guiWindowSetSizable(authWindow,false)
     
 function showAuthGUI()
     outputChatBox("#ff9000Приветствуем Вас на сервере Project Pegasus RP!",255,255,255,true)
@@ -54,6 +56,7 @@ addEventHandler("changeAuthLabel",getRootElement(),changeAuthLabel)
 
 function successAuth()
     guiSetVisible(authWindow,false)
+    showCursor(false)
     outputChatBox("#00c0ffВы успешно авторизировались!",255,255,255,true)
 end
 

@@ -36,3 +36,8 @@ addEventHandler('onClientRender',root,function()
     dxDrawRectangle(sx/2-dxGetTextWidth(tipMsg)/2-10,sy-0.15*sy-5,dxGetTextWidth(tipMsg)+20,dxGetFontHeight()+10,tocolor(0,0,0,tipAlpha['2']))
     dxDrawText(tipMsg,sx/2-dxGetTextWidth(tipMsg)/2,sy-0.15*sy,'right','top',tocolor(255,255,255,tipAlpha['1']))
 end)
+
+
+addEventHandler('onClientResourceStart',getResourceRootElement(getThisResource()),function()
+    setDevelopmentMode(true)
+end)

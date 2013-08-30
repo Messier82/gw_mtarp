@@ -14,7 +14,9 @@ addEvent('introduced',true)
 addEventHandler('introduced',root,function()
     local gid = getElementData(source,'gid')
     local intro_change = changeAccountData(gid,'introduced','1')
-    if not intro_change then
+    if intro_change then
+        triggerEvent('spawnPlayer',source)
+    else
         outputChatBox('#ff0000ERROR: Code 7.',source,255,255,255,true)
     end
 end)

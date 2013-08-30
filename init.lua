@@ -40,6 +40,11 @@ function startRes()
      
      local ldr,ldg,ldb = getMarkerColor(getElementByID('licensers_duty'))
      setMarkerColor(getElementByID('licensers_duty'),ldr,ldg,ldb,0)
+     
+     moveObject(getElementByID('adm_gate_1'),100,1424,-1837.099,12.5)
+     moveObject(getElementByID('z51_gate'),100,97,1926.499,18.79)
+     moveObject(getElementByID('rus_gate_1'),100,1520.599,2786.79,9.8)
+     moveObject(getElementByID('rus_gate_2'),100,1520.599,2768.19,9.8)
 end
 
 addEventHandler("onResourceStart",getResourceRootElement(getThisResource()),startRes)

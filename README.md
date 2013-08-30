@@ -36,6 +36,8 @@ Errs:
 
 13:Can't open server local db
 
+14:Can't create colSphere for marker
+
 Spawns: 
 -----------
 LS: ls_spawn1-4
@@ -83,3 +85,43 @@ DX Information markers:
 ----------
 
 as_msg_table
+
+ID's:
+---------
+
+AS Vehicles: 
+as_vehicle_moto_1;
+as_vehicle_moto_2;
+as_vehicle_moto_3;
+
+as_vehicle_1;
+as_vehicle_2;
+as_vehicle_3;
+as_vehicle_4;
+as_vehicle_5;
+as_vehicle_6;
+as_vehicle_7;
+as_vehicle_8;
+as_vehicle_9;
+as_vehicle_10;
+as_vehicle_11;
+
+as_vehicle_truck_1;
+as_vehicle_truck_2;
+
+as_vehicle_plane;
+as_vehicle_heli;
+
+as_gate1;
+as_gate2;
+
+Other:
+adm_gate_1;
+clothes_shop_1;
+
+Zone 51:
+z51_gate;
+
+Mafia:
+rus_gate1;
+rus_gate2;

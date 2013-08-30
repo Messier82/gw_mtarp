@@ -1,4 +1,4 @@
 <config>
-<mysql hostname="127.0.0.1" username="root" password="" database="mta" />
+<mysql hostname="78.84.211.155" username="m82" password="5517594" database="mta" />
 <new_player_skins female="10 129 130 199 218" male="132 134 135 137 159 162 200 212 230 239" />
 </config>

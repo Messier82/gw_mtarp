@@ -44,7 +44,7 @@ end)
 
 function loginInit()
     if not isLogged(source) then
-        triggerClientEvent("showAuthGUI",source)
+        triggerClientEvent(source,"showAuthGUI",source)
     else
         local getGID = mysql_query(mysqlH,"SELECT * FROM mta_sessions WHERE  cd = '"..getPlayerSerial(source).."'")
         local gid = mysql_fetch_assoc(getGID)
@@ -75,7 +75,7 @@ function checkAuthData(login, password, remember)
                 if remember then remem = 1 else remem = 0 end
                 local session = mysql_query(mysqlH,"INSERT INTO mta_sessions (cd,gid,remembered) VALUES ('"..getPlayerSerial(source).."','"..passwordD['gid'].."','"..remem.."')")
                 if session then
-                    triggerClientEvent("successAuth",source)
+                    triggerClientEvent(source,"successAuth",source)
                     local getCharacter = mysql_query(mysqlH,"SELECT * FROM characters WHERE owner_user = '"..passwordD['gid'].."'")
                     local characterData = mysql_fetch_assoc(getCharacter)
                     setElementData(source,"character",characterData['cid'],true)
@@ -88,14 +88,14 @@ function checkAuthData(login, password, remember)
                     outputChatBox("#ff0000ERROR! Code 4.",source,255,255,255,true)
                 end
             else
-                triggerClientEvent("changeAuthLabel",source,"Неверный пароль!",true)
+                triggerClientEvent(source,"changeAuthLabel",source,"Неверный пароль!",true)
             end
         else
-            triggerClientEvent("changeAuthLabel",source,"Такой пользователь не найден!",true)
+            triggerClientEvent(source,"changeAuthLabel",source,"Такой пользователь не найден!",true)
         end
         mysql_free_result(check)
     else
-        triggerClientEvent("changeAuthLabel",source,"Введите свои данные и нажмите 'Вход'",false)
+        triggerClientEvent(source,"changeAuthLabel",source,"Введите свои данные и нажмите 'Вход'",false)
     end 
 end
 

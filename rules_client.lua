@@ -7,16 +7,19 @@ alpha['1']=0
 alpha['2']=0
 alpha['3']=0
 local cont=false
+local introducing = false
 
 addEvent('showIntroducing',true)
 addEventHandler('showIntroducing',root,function()
     showChat(false)
     showPlayerHudComponent('all',false)
+    fadeCamera(false)
     setTimer(showPage,1200,1,1)
+    introducing = true
 end)
 
 addEventHandler('onClientKey',root,function(key,state) 
-    if not state and cont and not isDebugViewActive() and not isMainMenuActive() and not isConsoleActive() then
+    if not state and cont and not isDebugViewActive() and not isMainMenuActive() and not isConsoleActive() and introducing then
         if curPage<pageNum then
             cont=false
             hidePage(curPage)
@@ -28,6 +31,8 @@ addEventHandler('onClientKey',root,function(key,state)
             showCont(false)
             showChat(true)
             showPlayerHudComponent('all',true)
+            fadeCamera(true)
+            introducing = false
             triggerServerEvent('introduced',getLocalPlayer())
         end
     end

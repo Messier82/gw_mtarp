@@ -1,9 +1,9 @@
 --Spawn player
 addEvent('spawnPlayer',false)
 addEventHandler('spawnPlayer',root,function() --First, initial spawn stage
-    local charData = getPlayerCharacterData(getElementData(source,'gid')) --Get character data for skin
+    local charData = getPlayerCharacterData(getElementData(source,'character')) --Get character data for skin
     if charData then
-        if charData['skin'] and charData['skin']==''  then --Check for skin availability
+        if type(charData['skin'])~='string' then --Check for skin availability
             local skinsConfig = xmlLoadFile('config.xml') --Open config file
             if skinsConfig then --Check if file was successfully opened
                 local skinsNode = xmlFindChild(skinsConfig,'new_player_skins',0) --Read new player skins child in config
